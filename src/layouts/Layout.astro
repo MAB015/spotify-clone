@@ -1,4 +1,6 @@
 ---
+import AsideMenu from "@/components/AsideMenu.astro"
+import { ViewTransitions } from "astro:transitions";
 interface Props {
 	title: string;
 }
@@ -9,22 +11,29 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions fallback="none" />
 	</head>
 	<body>
 		<div id="app" class="relative h-screen p-2 gap-2">
-			<aside class="[grid-area:aside] flex-col flex overflow-y-auto bg-blue-100">
-				ASIDE
+			<aside class="[grid-area:aside] flex-col flex overflow-y-auto">
+				<AsideMenu>
+
+				</AsideMenu>
 			</aside>
 
-			<main class="[grid-area:main] bg-red-200">
-				MAIN
+			<main class="[grid-area:main] rounded-lg bg-zinc-900 overflow-y-auto">
+				<slot />
 			</main>
 
-			<footer class="[grid-area:player] min-h-[100px] bg-white">
+			<footer class="[grid-area:player] min-h-[100px]">
 				FOOTER
 			</footer>
-			<slot />
 		</div>
 	</body>
 </html>
@@ -43,7 +52,72 @@ const { title } = Astro.props;
 
 <style is:global>
 	html {
-		font-family: system-ui, sans-serif;
-		background: #000;
+		font-family: "CircularSpotifyText", system-ui, sans-serif;
+		background: #010101;
+		color: white;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-Light.otf") format ("otf");
+		font-weight: 100;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-Medium.otf") format ("otf");
+		font-weight: 300;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-MediumItalic.otf") format ("otf");
+		font-weight: 300;
+		font-style: italic;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-Book.otf") format ("otf");
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-BookItalic.otf") format ("otf");
+		font-weight: 500;
+		font-style: italic;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-Bold.otf") format ("otf");
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-Black.otf") format ("otf");
+		font-weight: 900;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'CircularSpotifyText';
+		src: url("/fonts/CircularSpotifyText-BlackItalic.otf") format ("otf");
+		font-weight: 900;
+		font-style: italic;
+		font-display: swap;
 	}
 </style>
